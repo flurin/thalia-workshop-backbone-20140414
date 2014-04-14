@@ -9,6 +9,7 @@ Sass::Plugin.options[:template_location] = {
 mockup.serve do |s|
   s.port = 9000
   s.use Sass::Plugin::Rack
+  s.use HtmlMockupAutoprefixer::Middleware, :skip => [/stylesheets\/vendor/]
 end
 
 mockup.release do |r|
