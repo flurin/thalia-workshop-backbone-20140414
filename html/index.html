@@ -190,13 +190,31 @@ search_result.get("title");
 
           <section>
             <pre><code data-trim>
-App.RootView = Backbone.View.extend({
-  template: _.template($("#root-view").html()),
+App.SearchView = Backbone.View.extend({
+  template: _.template($("#search-view").html()),
+  
+  initialize: function(){
+    this.results = new App.SearchCollection();
+  },
+
+  events: {
+    "click .btn"  : "searchHandle",
+  },
   
   render: function(){
-    this.$el.html(this.template({title: "Hello World!", body: "This is the root of your application"}));
+    this.$el.html(this.template());
 
     return this;
+  },
+
+  // Handle function to extract form values
+  searchHandle: function(event){
+    this.search(this.$el.find("form").serialize());
+    return event.preventDefault();
+  },
+
+  search: function(query){
+    this.results.fetch({data: query});
   }
 });
             </code></pre>
@@ -222,11 +240,22 @@ App.SearchCollection = Backbone.Collection.extend({
 
           <section>
             <h1>Events</h1>
+            <p>
+              DOM events &amp; Event API
+            </p>
           </section>
 
           <section>
-            <pre><code data-trim>
+            <pre><code data-trim>            
+// Collection event
+renderResults = function(){ };
+this.results = new App.SearchCollection();
+this.results.on("sync", renderResults, this);
 
+// Model event
+result = new App.SearchResult();
+result.on("dance", fucntion(msg){ console.log(msg); });
+result.trigger("dance", "test 1-2-3");
             </code></pre>
           </section>
 
