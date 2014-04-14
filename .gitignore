@@ -1,0 +1,6 @@
+.sass-cache
+.DS_store
+html/stylesheets/*.css
+html/_doc/stylesheets/*.css
+html/vendor/revealjs/css/theme/template/*.css
+releases

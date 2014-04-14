@@ -1,0 +1,97 @@
+/**
+ * Default theme for reveal.js.
+ *
+ * Copyright (C) 2011-2012 Hakim El Hattab, http://hakim.se
+ */
+
+
+// Default mixins and settings -----------------
+@import "../vendor/revealjs/css/theme/template/mixins";
+@import "../vendor/revealjs/css/theme/template/settings";
+// ---------------------------------------------
+
+
+
+// Include theme-specific fonts
+@font-face {
+    font-family: 'arvoweb';
+    src: url('../fonts/arvo-web/arvo-web-regular-webfont.eot');
+    src: url('../fonts/arvo-web/arvo-web-regular-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/arvo-web/arvo-web-regular-webfont.woff') format('woff'),
+         url('../fonts/arvo-web/arvo-web-regular-webfont.ttf') format('truetype'),
+         url('../fonts/arvo-web/arvo-web-regular-webfont.svg#arvoregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'droid_sansregular';
+    src: url('../fonts/droid/DroidSans-webfont.eot');
+    src: url('../fonts/droid/DroidSans-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/droid/DroidSans-webfont.woff') format('woff'),
+         url('../fonts/droid/DroidSans-webfont.ttf') format('truetype'),
+         url('../fonts/droid/DroidSans-webfont.svg#droid_sansregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+
+
+// Override theme settings (see ../template/settings.scss)
+/*$heading1TextShadow: 0 1px 0 #ccc, 0 2px 0 #c9c9c9, 0 3px 0 #bbb, 0 4px 0 #b9b9b9, 0 5px 0 #aaa, 0 6px 1px rgba(0,0,0,.1), 0 0 5px rgba(0,0,0,.1), 0 1px 3px rgba(0,0,0,.3), 0 3px 5px rgba(0,0,0,.2), 0 5px 10px rgba(0,0,0,.25), 0 20px 20px rgba(0,0,0,.15);*/
+
+// Settings
+$backgroundColor: #240029;
+
+$mainFont: "droid_sansregular", sans-serif;
+$mainFontSize: 45px;
+
+$headingFont: "arvoweb", serif;
+$headingColor: #fff;
+$headingLineHeight: 1em;
+$headingLetterSpacing: 0.02em;
+$headingTextTransform: uppercase;
+$headingTextShadow: 0px 0px 6px rgba(0,0,0,0.2);
+$heading1TextShadow: $headingTextShadow;
+
+$linkColor: #FF0062;
+$linkColorHover: lighten( $linkColor, 20% );
+
+// Theme template ------------------------------
+@import "../vendor/revealjs/css/theme/template/theme";
+// ---------------------------------------------
+
+.reveal h1 { font-size: 2.2em; }
+.reveal h2 { font-size: 1.3em; }
+.reveal ul { margin-bottom: 1em;}
+
+.reveal section .seamless{
+  background: none;
+  border: none;
+}
+
+.reveal blockquote{
+  font-style: normal;
+}
+
+.reveal blockquote cite{
+  display: block;
+  font-size: 0.6em;
+}
+
+.reveal blockquote cite::before{
+  content: " — ";
+}
+
+
+.reveal button.big{
+  padding: 0.2em;
+  font-size: 2em;
+}
+
+.reveal .note{
+  font-size: 0.6em;
+  color: rgba(255,255,255,0.5);
+}

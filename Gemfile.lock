@@ -1,0 +1,33 @@
+GEM
+  remote: http://rubygems.org/
+  specs:
+    bluecloth (2.2.0)
+    coderay (1.1.0)
+    hpricot (0.8.6)
+    html_mockup (0.8.4)
+      hpricot (>= 0.6.4)
+      rack (>= 1.0.0)
+      sass
+      thor (~> 0.16.0)
+      tilt (~> 1.4.0)
+    method_source (0.8.2)
+    pry (0.9.12.3)
+      coderay (~> 1.0)
+      method_source (~> 0.8)
+      slop (~> 3.4)
+    rack (1.5.2)
+    sass (3.2.12)
+    slop (3.4.6)
+    thor (0.16.0)
+    tilt (1.4.1)
+    yui-compressor (0.12.0)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  bluecloth
+  html_mockup
+  pry
+  sass
+  yui-compressor
