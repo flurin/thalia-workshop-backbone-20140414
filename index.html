@@ -1,0 +1,376 @@
+<!doctype html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+
+    <title>Workshop Backbone</title>
+
+    <meta name="description" content="">
+    <meta name="author" content="Flurin Egger">
+
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <link rel="stylesheet" href="vendor/revealjs/css/reveal.min.css">
+    <link rel="stylesheet" href="stylesheets/theme.css" id="theme">
+
+    <!-- For syntax highlighting -->
+    <link rel="stylesheet" href="vendor/revealjs/lib/css/zenburn.css">
+
+    <!-- If the query includes 'print-pdf', use the PDF print sheet -->
+    <script>
+      document.write( '<link rel="stylesheet" href="vendor/revealjs/css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+    </script>
+
+    <!--[if lt IE 9]>
+    <script src="vendor/revealjs/lib/js/html5shiv.js"></script>
+    <![endif]-->
+      
+  </head>
+
+  <body>
+
+    <div class="reveal">
+
+      <!-- Any section element inside of this container is displayed as a slide -->
+      <div class="slides">
+        <section data-background="images/backgrounds/title.png">
+          <h1>Workshop Backbone</h1>
+          <p></p>
+        </section>
+        
+        <section >
+          <div class="columns">
+            <div class="columns__column">
+              <h1>Flurin</h1>
+              <p>@flurin</p>
+            </div>
+            <div class="columns__column">
+              <h1>Edwin</h1>
+            </div>
+          </section>
+        </section>
+
+        <section>
+          <a href="http://www.digitpaint.nl"><img src="images/logo_digitpaint.png" class="seamless"></a>
+        </section>
+
+        <section>
+          <h1>Programme</h1>
+          <ul>
+            <li>Introduction</li>
+            <li>Hacking</li>
+            <li>Round-up &amp; evaluation</li>
+          </ul>
+        </section>
+
+        <section>
+          <h1>Today's goal</h1>
+          <ul>
+            <li class="fragment">Short overview of MVC &amp; Backbone</li>
+            <li class="fragment">Build a small Backbone app</li>
+          </ul>
+        </section>
+
+        <section>
+          <section>
+            <h1>MVC</h1>
+            <p>(clientside)</p>
+          </section>
+
+          <section>
+            <p>Separation of concerns</p>
+          </section>
+
+          <section>
+            <h1>Model</h1>
+            <p>Represents data &amp; business logic</p>
+          </section>
+
+          <section>
+            <h1>View</h1>
+            <p>The user interface</p>
+          </section>
+
+          <section>
+            <h1>Controller</h1>
+            <p>Handle input and update Models</p>
+          </section>
+
+          <section>
+            <h1>Frameworks</h1>
+            <ul>
+              <li>Angular</li>
+              <li>Ember</li>
+              <li>Backbone</li>
+            </ul>
+          </section>
+
+          <section>
+            <h1>Why a framework?</h1>
+            <ul>
+              <li>Re-inventing the wheel</li>
+              <li>Structure</li>
+              <li>Solutions</li>
+            </ul>
+          </section>
+
+          <section>
+            <h1>When to use an MVC framework?</h1>
+            <ul>
+              <li class="fragement">Fast &amp; "snappy" applications</li>
+              <li class="fragement">Complex applications</li>
+            </ul>
+          </section>
+
+          <section>
+            <h1>When <strong>not</strong> to use an MVC framework?</h1>
+            <ul>
+              <li class="fragement">Lot's of server side rendering</li>
+              <li class="fragement">Server side UI logic</li>
+              <li class="fragement">Simple stuff</li>
+            </ul>
+          </section>        
+        </section>
+
+        <section>
+          <section>
+            <h1>Backbone</h1>
+          </section>
+
+          <section>
+            <h1>Why Backbone?</h1>
+            <ul>
+              <li class="fragment">Minimal</li>
+              <li class="fragment">Scales well</li>
+              <li class="fragment">Vibrant community</li>
+              <li class="fragment">Mature</li>
+            </ul>
+          </section>
+
+          <section>
+            <h1>Components</h1>
+            <ul>
+              <li>Model</li>
+              <li>View</li>
+              <li>Collection</li>
+              <li>Router</li>
+            </ul>
+          </section>
+
+          <section>
+            <img src="images/backbone_mvc.png" alt="Backbone MVC" class="seamless" />
+          </section>
+
+          <section>
+            <h1>Models</h1>
+
+            <p>Application data and logic around that data</p>
+          </section>
+
+          <section>
+            <pre><code data-trim>
+App.SearchResult = Backbone.Model.extend({
+
+});
+
+var search_result = new App.SearchResult();
+search_result.set("title", "bla");
+search_result.get("title");
+
+            </code></pre>
+          </section>
+
+          <section>
+            <h1>View</h1>
+            <p>
+              Presentation logic &amp; binding.
+            </p>
+          </section>
+
+          <section>
+            <pre><code data-trim>
+App.SearchView = Backbone.View.extend({
+  template: _.template($("#search-view").html()),
+  
+  initialize: function(){
+    this.results = new App.SearchCollection();
+  },
+
+  events: {
+    "click .btn"  : "searchHandle",
+  },
+  
+  render: function(){
+    this.$el.html(this.template());
+
+    return this;
+  },
+
+  // Handle function to extract form values
+  searchHandle: function(event){
+    this.search(this.$el.find("form").serialize());
+    return event.preventDefault();
+  },
+
+  search: function(query){
+    this.results.fetch({data: query});
+  }
+});
+            </code></pre>
+          </section>
+
+
+          <section>
+            <h1>Collection</h1>
+            <p>
+              A set of models
+            </p>
+          </section>
+
+          <section>
+            <pre><code data-trim>
+App.SearchCollection = Backbone.Collection.extend({
+  model: App.SearchResult,
+  url: "https://api.soundcloud.com/tracks?client_id=9bea58b0147d26f467e8919ee83839d1"
+});
+            </code></pre>
+          </section>
+
+
+          <section>
+            <h1>Events</h1>
+            <p>
+              DOM events &amp; Event API
+            </p>
+          </section>
+
+          <section>
+            <pre><code data-trim>            
+// Collection event
+renderResults = function(){ };
+this.results = new App.SearchCollection();
+this.results.on("sync", renderResults, this);
+
+// Model event
+result = new App.SearchResult();
+result.on("dance", fucntion(msg){ console.log(msg); });
+result.trigger("dance", "test 1-2-3");
+            </code></pre>
+          </section>
+
+
+          <section>
+            <h1>Routers</h1>
+            <p>
+              Connect URL's to parts of your application
+            </p>
+          </section>
+
+          <section>
+            <pre><code data-trim>
+App.Router = Backbone.Router.extend({
+
+  routes: {
+    "":                 "root",
+    "help":             "help",    // #help
+    "search":          "search",  // #search/kiwis
+    "search/:query":    "search"  // #search/kiwis
+  },
+
+  root: function(){
+    new App.RootView({el: "#app"}).render();
+  },
+
+  help: function(){
+    console.log("Hellup!");
+  },
+
+  search: function(query){
+    new App.SearchView();
+  }
+
+});
+            </code></pre>
+          </section>
+
+
+        </section>
+
+
+        <section>
+          <section>
+            <h1>Let's get started!</h1>
+            <ul>
+              <li>http://backbonejs.org/</li>
+              <li>http://underscorejs.org/</li>
+
+              <li>http://addyosmani.github.io/backbone-fundamentals/</li>
+
+              <li><code>git clone https://github.com/DigitPaint/workshop-backbone-boilerplate.git</code></li>
+            </ul>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            <h1>Wrap-up</h1>
+          </section>
+
+          <section>
+            <h1>Best practices</h1>
+            <ul>
+              <li>Do not store data in the DOM or the view</li>
+              <li>DOM events houls only affect models</li>
+              <li>DOM changes only when the model changes</li>
+              <li>Scope your views</li>
+            </ul>
+          </section>
+
+          <section>
+            <h1>What did you think?</h1>
+          </section>
+        </section>
+        
+
+        <section data-state="slide-thankyou" data-background="images/backgrounds/thank_you.png">
+          <h1>Thank you</h1>
+        </section>
+      </div>
+
+    </div>
+
+    <script src="vendor/revealjs/lib/js/head.min.js"></script>
+    <script src="vendor/revealjs/js/reveal.min.js"></script>
+
+    <script>
+
+      // Full list of configuration options available here:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+
+        theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+        transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+
+        // Optional libraries used to extend on reveal.js
+        dependencies: [
+          { src: 'vendor/revealjs/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+          { src: 'vendor/revealjs/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: 'vendor/revealjs/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: 'vendor/revealjs/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+          { src: 'vendor/revealjs/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+          { src: 'vendor/revealjs/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+        ]
+      });
+
+    </script>
+
+  </body>
+</html>
